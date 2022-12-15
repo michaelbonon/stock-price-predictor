@@ -4,14 +4,13 @@ import locale
 
 import requests
 from bs4 import BeautifulSoup
-
-from model import StockData
+from src.model import StockData
 
 
 def get_close(soup: BeautifulSoup) -> float | str:
     """Get close price of stock from soup object"""
     try:
-        close_price_th = soup.find("th", text="Last Traded Price")
+        close_price_th = soup.find("th", string="Last Traded Price")
         if close_price_th is None:
             raise RuntimeError("Element th not found")
 
